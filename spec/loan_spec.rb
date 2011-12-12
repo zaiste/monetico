@@ -59,8 +59,7 @@ describe Monetico::Loan do
       table =  @loan.payback(1..360)
     
       table[359][:balance].to_f.round_down(2).should == 0.0
-    end  
-    
+    end      
   end
 end
 

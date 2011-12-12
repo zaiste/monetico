@@ -54,7 +54,7 @@ module Monetico
         range.map do |n|
           amount = capital + interests(n)
           current_amount += amount
-          { no: n, interests: interests(n), amount: amount, capita: capital, balance: @amount + total_interests - current_amount}
+          { no: n, interests: interests(n), amount: amount, capital: capital, balance: @amount + total_interests - current_amount}
         end
       end 
     end
