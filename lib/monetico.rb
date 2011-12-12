@@ -1,4 +1,5 @@
 require "bigdecimal"
+require 'excel'
 require "monetico/loan"
 require "monetico/version"
 
