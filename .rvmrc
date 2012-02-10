@@ -1,2 +1,4 @@
-rvm_gemset_create_on_use_flag=1
-rvm gemset use monetico 
+#rvm_gemset_create_on_use_flag=1
+#rvm gemset use monetico
+
+rvm use 1.9.3@monetico --create
