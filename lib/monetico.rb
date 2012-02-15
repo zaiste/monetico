@@ -11,5 +11,10 @@ class BigDecimal
   include Monetico::Calculable
 end
 
+class Fixnum
+  # usable for #big
+  include Monetico::Calculable
+end
+
 module Monetico
 end
