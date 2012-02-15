@@ -1,23 +1,21 @@
 require "bigdecimal"
+require "excel"
+require "monetico/calculable"
 require "monetico/loan"
 require "monetico/version"
 
 class Float
-  def big; BigDecimal(self.to_s); end
+  include Monetico::Calculable
+end
 
-  def round_to(x)
-    (self * 10**x).ceil.to_f / 10**x
-  end
+class BigDecimal
+  include Monetico::Calculable
+end
 
-  def round_down(x)
-    if self >= 0 
-      (self * 10**x).floor.to_f / 10**x
-    else
-      -((-self * 10**x).floor.to_f / 10**x)
-    end
-  end
+class Fixnum
+  # usable for #big
+  include Monetico::Calculable
 end
 
 module Monetico
-  # Your code goes here...
 end

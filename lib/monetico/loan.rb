@@ -1,5 +1,7 @@
 module Monetico
   class Loan
+    include Excel
+    
     CADENCE = {
       monthly: 12,
       weekly: 52,
@@ -28,30 +30,50 @@ module Monetico
     end
 
     def interests(idx)
-      (@amount - (idx - 1) * capital) * @interest_rate
+      if const?
+        interests_for_period(idx)
+      else
+        (@amount - (idx - 1) * capital) * @interest_rate
+      end
     end
 
     def payback(range) 
       from = range.begin
       to = range.end
-
+      
+      current_amount = 0.0
+      
       if const?
         par = (1 + @interest_rate) ** @no_installments
-
+                
         range.map do |n|
-          { no: n, interests: interests(n), amount: @amount * @interest_rate * par / (par - 1) }
+          current_amount += monthly_payment
+          { no: n, interests: interests(n), amount: monthly_payment, capital: capital_for_period(n), balance:  @amount + total_interests - current_amount}
         end
       else
         range.map do |n|
-          { no: n, interests: interests(n), amount: capital + interests(n) }
+          amount = capital + interests(n)
+          current_amount += amount
+          { no: n, interests: interests(n), amount: amount, capital: capital, balance: @amount + total_interests - current_amount}
         end
       end 
     end
-
+        
+    def monthly_payment
+      pmt(@interest_rate, @no_installments, @amount).abs  
+    end
+   
+    def interests_for_period(n)
+      ipmt(@interest_rate, n, @no_installments, @amount).abs
+    end
+    
+    def capital_for_period(n)
+      ppmt(@interest_rate, n, @no_installments, @amount).abs
+    end
+           
     def const?
       @kind == :const
     end
     private :const?
-
   end
 end
