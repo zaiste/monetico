@@ -46,17 +46,43 @@ module Monetico
       if const?
         par = (1 + @interest_rate) ** @no_installments
                 
-        range.map do |n|
+        res = range.map do |n|
           current_amount += monthly_payment
           { no: n, interests: interests(n), amount: monthly_payment, capital: capital_for_period(n), balance:  @amount + total_interests - current_amount}
         end
+
+        res = round_calculation(res)
+        return res
       else
-        range.map do |n|
+        res = range.map do |n|
           amount = capital + interests(n)
           current_amount += amount
           { no: n, interests: interests(n), amount: amount, capital: capital, balance: @amount + total_interests - current_amount}
         end
+        
+        res = round_calculation(res)
+        return res
       end 
+    end
+
+    # all payback items for all
+    def payback_all
+      payback(1..@no_installments)
+    end
+
+    def round_calculation(res)
+      [:interests, :amount, :capital, :balance].each do |k|
+        tmp = MoneyArray.factory( res.collect{|r| r[k]} )
+        tmp = tmp.money_round
+
+        puts tmp.to_yaml
+
+        res.each_with_index do |r,i|
+          r[k] = tmp[i]
+        end
+
+      end
+      return res
     end
         
     def monthly_payment

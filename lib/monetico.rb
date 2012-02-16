@@ -1,5 +1,6 @@
 require "bigdecimal"
 require "excel"
+require "monetico/money_array"
 require "monetico/calculable"
 require "monetico/loan"
 require "monetico/version"

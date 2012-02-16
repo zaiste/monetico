@@ -6,6 +6,8 @@ module Monetico
       BigDecimal(self.to_s);
     end
 
+    alias_method :to_big, :big
+
     def round_to(x = DEF_PREC)
       (self * 10**x).ceil.to_f / 10**x
     end
