@@ -9,42 +9,42 @@ describe Monetico::Loan do
     end
 
     it "first monthly_payment" do
-      @loan.monthly_payment.to_f.round_down(2).abs.should == 1264.14
-      @loan.monthly_payment.to_f.round_down.abs.should == 1264.14
+      @loan.monthly_payment.to_f.should == 1264.14
+      @loan.monthly_payment.to_f.should == 1264.14
     end
 
     it "total_interests returns sum of interests" do
-      @loan.total_interests.to_f.round_down(2).should == 255088.98
+      @loan.total_interests.to_f.should == 255088.98
     end
 
     it "monthly_capital(1) returns capital for first payment" do
-      @loan.capital_for_period(1).to_f.round_down(2).abs.should == 180.80
+      @loan.capital_for_period(1).to_f.abs.should == 180.80
     end
 
     it "monthly_interests(1) returns capital for first payment" do
-      @loan.interests_for_period(1).to_f.round_down(2).abs.should == 1083.33
+      @loan.interests_for_period(1).to_f.abs.should == 1083.33
     end
 
     it "monthly_capital(117) returns capital for payment" do
-      @loan.capital_for_period(117).to_f.round_down(2).abs.should == 338.34
+      @loan.capital_for_period(117).to_f.abs.should == 338.34
     end
 
     it "monthly_intersts(117) returns capital for payment" do
-      @loan.interests_for_period(117).to_f.round_down(2).abs.should == 925.80
+      @loan.interests_for_period(117).to_f.abs.should == 925.80
     end
 
     it "monthly_capital(231) returns capital for payment" do
-      @loan.capital_for_period(231).to_f.round_down(2).abs.should == 626.33
+      @loan.capital_for_period(231).to_f.abs.should == 626.33
     end
 
     it "monthly_intersts(231) returns capital for payment" do
-      @loan.interests_for_period(231).to_f.round_down(2).abs.should == 637.81
+      @loan.interests_for_period(231).to_f.abs.should == 637.81
     end
 
     #it "payback(1..360) returns payback table and last item balance should be 0.0" do
     #  table = @loan.payback(1..360)
     #
-    #  table[359][:balance].to_f.round_down(2).should == 0.0
+    #  table[359][:balance].to_f.should == 0.0
     #end
 
   end
@@ -55,21 +55,21 @@ describe Monetico::Loan do
   #  end
   #
   #  it "capital returns amount/no_installments" do
-  #    @loan.capital.to_f.round_down(2).abs.should == 555.56
+  #    @loan.capital.to_f.abs.should == 555.56
   #  end
   #
   #  it "total_interests returns sum of interests" do
-  #    @loan.total_interests.to_f.round_down(2).should == 195541.67
+  #    @loan.total_interests.to_f.should == 195541.67
   #  end
   #
   #  it "interests(1) returns intersts for 1 payment" do
-  #    @loan.interests(1).to_f.round_down(2).should == 1083.33
+  #    @loan.interests(1).to_f.should == 1083.33
   #  end
   #
   #  it "payback(1..360) returns payback table and last item balance should be 0.0" do
   #    table = @loan.payback(1..360)
   #
-  #    table[359][:balance].to_f.round_down(2).should == 0.0
+  #    table[359][:balance].to_f.should == 0.0
   #  end
   #
   #end

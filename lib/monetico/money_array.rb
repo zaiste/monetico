@@ -16,6 +16,14 @@ module Monetico
       return obj
     end
 
+    # round up currency value
+    def self.money_round_value(v)
+      return ((v * 100).round / 100.0).to_big
+      # TODO delete it
+      #return ((v * 100).floor / 100.0)
+      #return ((v * 100).ceil / 100.0)
+    end
+
     # round series of values to achieve proper sum
     def self.money_round(a)
       sum = a.array_sum
@@ -23,7 +31,7 @@ module Monetico
       result = MoneyArray.new
 
       a.each do |b|
-        rounded = ((b * 100).round / 100.0)
+        rounded = money_round_value(b)
         real = b
 
         # compensation

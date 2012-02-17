@@ -84,17 +84,33 @@ module Monetico
       end
       return res
     end
-        
-    def monthly_payment
+
+    # not rounded
+    def monthly_payment_float
       pmt(@interest_rate, @no_installments, @amount).abs  
     end
-   
-    def interests_for_period(n)
+
+    # rounded
+    def monthly_payment
+      MoneyArray.money_round_value(monthly_payment_float)
+    end
+
+    # not rounded
+    def interests_for_period_float(n)
       ipmt(@interest_rate, n, @no_installments, @amount).abs
     end
+
+    # rounded
+    def interests_for_period(n)
+      MoneyArray.money_round_value(interests_for_period_float(n))
+    end
     
-    def capital_for_period(n)
+    def capital_for_period_float(n)
       ppmt(@interest_rate, n, @no_installments, @amount).abs
+    end
+
+    def capital_for_period(n)
+      MoneyArray.money_round_value(capital_for_period_float(n))
     end
            
     def const?
