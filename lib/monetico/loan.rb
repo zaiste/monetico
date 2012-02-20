@@ -210,36 +210,6 @@ module Monetico
       return res
     end
 
-    # temporary
-
-    #def capital_real
-    #  r(@amount / @no_installments)
-    #end
-
-    #def total_interests_real_float
-    #  if const?
-    #    par = (1 + @interest_rate) ** @no_installments
-    #    payback_amount = @amount * @interest_rate * par / (par - 1)
-    #    res = payback_amount * @no_installments - @amount
-    #  else
-    #    res = 0.5.big * @interest_rate * @no_installments * (@amount + capital_real)
-    #  end
-    #  res
-    #end
-
-    #def total_interests_real
-    #  r(total_interests_float)
-    #end
-
-    #def interests_real(idx)
-    #  if const?
-    #    res = interests_for_period(idx)
-    #  else
-    #    res = (@amount - (idx - 1) * capital_real) * @interest_rate
-    #  end
-    #  r(res)
-    #end
-
 
   end
 end

@@ -20,20 +20,6 @@ describe Monetico::MoneyArray do
     end
 
     it "should round simple loan results" do
-      #344.50566129375136
-      #16.666666666666668
-      #327.8389946270847
-      #689.0113225874981
-      #*
-      #344.50566129375136
-      #11.20268342288194
-      #333.3029778708694
-      #344.5056612937467
-      #*
-      #344.50566129375136
-      #5.647633791700789
-      #338.85802750205056
-
       ma = Monetico::MoneyArray.new
       # also testes using floats
       ma << BigDecimal.new("327.8389946270847")
