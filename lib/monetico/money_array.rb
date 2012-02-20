@@ -47,7 +47,6 @@ module Monetico
         rest += real - rounded
       end
 
-      # puts "rest #{rest}"
       return result
 
     end
