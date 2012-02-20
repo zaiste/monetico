@@ -9,12 +9,12 @@ describe Monetico::MoneyArray do
       ma = Monetico::MoneyArray.new
       ma << 10.001
       ma << 9.999
-      puts ma.class
 
       ma.money_round.each do |m|
         # precision check
         rest = (m * 100.00) % 1
-        puts "#{m} - rest #{rest}"
+        #puts "#{m} - rest #{rest}"
+        rest.should == 0.0
       end
 
     end
@@ -40,14 +40,15 @@ describe Monetico::MoneyArray do
       ma << BigDecimal.new("333.3029778708694")
       ma << BigDecimal.new("338.85802750205056")
 
-      puts ma.array_sum
-
       ma.money_round.each do |m|
         # precision check
         rest = (m * 100.00) % 1
-        puts "#{m} - rest #{rest}"
+        #puts "#{m} - rest #{rest}"
+        rest.should == 0.0
       end
 
+      # sum after rounding
+      ma.money_round.array_sum.should == 1000.0
     end
 
   end

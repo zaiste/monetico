@@ -1,5 +1,6 @@
 module Monetico
   class MoneyArray < Array
+    # round money values to proper precision, ...
     def money_round
       return self.class.money_round(self)
     end

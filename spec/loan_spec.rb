@@ -83,6 +83,14 @@ describe Monetico::Loan do
       @loan.amounts(1).to_f.should == 1638.89
     end
 
+    it "interests(123) returns intersts for 1 payment" do
+      @loan.interests(123).to_f.should == 716.20
+    end
+
+    it "amount(123) returns amount for 1 payment" do
+      @loan.amounts(123).to_f.should == 1271.76
+    end
+
     it "payback_all returns payback table and last item balance should be 0.0" do
       table = @loan.payback_all
       table[359][:balance].to_f.should == 0.0
